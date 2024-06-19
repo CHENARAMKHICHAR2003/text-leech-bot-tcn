@@ -122,7 +122,7 @@ async def account_login(bot: Client, m: Message):
     else:
         CR = raw_text3
    
-   await editable.edit("Now Send Your **Thumb Url**\nOr Send **no**\n\n **Note :** Send **no** In Small latters Else Bot Failed to Upload Video")
+    await editable.edit("Now Send Your **Thumb Url**\nOr Send **no**\n\n **Note :** Send **no** In Small latters Else Bot Failed to Upload Video")
     input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
     await input6.delete(True)
