@@ -5,7 +5,7 @@ idna
 mutagen
 pyaes
 pycryptodome
-pyrogram==2.0.72
+pyrogram==2.0.92
 PySocks
 python-dotenv
 TgCrypto
