@@ -230,7 +230,6 @@ async def account_login(bot: Client, m: Message):
                     time.sleep(1)
 
             except Exception as e:
-                except Exception as e:
                 await m.reply_text(f"**#Failed to Download❌ **\n**Name ➤** `{name}`\n**Link ➤** `{url}`\n\n ** Failed Reason ➤** `{e}`")
                 continue
 
