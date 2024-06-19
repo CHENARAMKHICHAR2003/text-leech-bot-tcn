@@ -8,13 +8,13 @@ pycryptodome
 pyrogram
 PySocks
 python-dotenv
-TgCrypto==1.2.5
+TgCrypto
 requests==2.31.0
 soupsieve
 urllib3
 websockets
-pyromod==1.5
-yt-dlp==2023.6.22
+pyromod
+yt-dlp
 motor
 aiohttp
 aiofiles
