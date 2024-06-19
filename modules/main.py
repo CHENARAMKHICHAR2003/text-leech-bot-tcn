@@ -193,8 +193,8 @@ async def account_login(bot: Client, m: Message):
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
             try:
-                cc = f'[ 🎬 ] **𝑽𝒊𝒅 𝑰𝑫 : **{str(count).zfill(3)}\n**𝑽𝒊𝒅𝒆𝒐 𝑵𝒂𝒎𝒆 :** {name1} ({res}).mkv\n**𝑩𝒂𝒕𝒄𝒉 𝑵𝒂𝒎𝒆 :** {b_name}\n\n**𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅 𝑩𝒚 ➤** {CR}'
-                cc1 = f'[ 📁 ] **𝑭𝒊𝒍𝒆 𝑰𝑫 : **{str(count).zfill(3)}\n**𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 :** {name1}.pdf\n**𝑩𝒂𝒕𝒄𝒉 𝑵𝒂𝒎𝒆 : **{b_name}\n\n**𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅 𝑩𝒚 ➤** {CR}'
+                cc = f'[ 🎬 ] **𝑽𝒊𝒅 𝑰𝑫 : **{str(count).zfill(3)}\n**𝑽𝒊𝒅𝒆𝒐 𝑵𝒂𝒎𝒆 :** {name1} ({res}).mkv\n**𝑩𝒂𝒕𝒄𝒉 𝑵𝒂𝒎𝒆 :** {b_name}\n\n**𝙀𝙭𝙩𝙧𝙖𝙘𝙩𝙚𝙙 𝑩𝒚 ➤** {CR}'
+                cc1 = f'[ 📁 ] **𝑭𝒊𝒍𝒆 𝑰𝑫 : **{str(count).zfill(3)}\n**𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 :** {name1}.pdf\n**𝑩𝒂𝒕𝒄𝒉 𝑵𝒂𝒎𝒆 : **{b_name}\n\n**𝙀𝙭𝙩𝙧𝙖𝙘𝙩𝙚𝙙 𝑩𝒚 ➤** {CR}'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -220,7 +220,7 @@ async def account_login(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    Show = f"𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠....\n\n📝 𝐍𝐚𝐦𝐞 » `{name}\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}`\n\n**🔗 𝐔𝐑𝐋 »** `{url}`\n\n**Bot By ➤**「 @Its84Chaudhary 」"
+                    Show = f"𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠....\n\n📝 𝐍𝐚𝐦𝐞 » `{name}\n📺 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}`\n\n**🔗 𝐔𝐫𝐥 »** `{url}`\n\n**Bot Provide By ➤**「 @Its84Chaudhary 」"
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
