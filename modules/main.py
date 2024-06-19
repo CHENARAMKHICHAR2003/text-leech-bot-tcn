@@ -33,27 +33,25 @@ bot = Client(
 @bot.on_message(filters.command(["start"]))
 async def account_login(bot: Client, m: Message):
     editable = await m.reply_text(
-       f"𝐇𝐞𝐥𝐥𝐨 ❤️\n\n◆〓◆ ❖ 𝐖𝐃 𝐙𝐎𝐍𝐄 ❖ ™ ◆〓◆\n\n❈ I Am A Bot For Download Links From Your **.TXT** File And Then Upload That File Om Telegram So Basically If You Want To Use Me First Send Me ⟰ /upload Command And Then Follow Few Steps..", reply_markup=InlineKeyboardMarkup(
+       f"  Hello 👋 Sir ! How are You ?\n\n ☞ I'm **Txt File** Downloader Bot.\n\n ☞ I can Download **Videos & Pdf** From Your **TXT** File.\n\n☞ Use /txt Command to Start the Process.\n\n ☞Use /stop Command to **Restart** bot.\n\n ☞ 𝐂𝐫𝐞𝐚𝐭𝐞𝐝 𝐁𝐲 **:** @Its84Chaudhary\n", reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("✜ 𝐉𝐨𝐢𝐧 𝐔𝐩𝐃𝐚𝐭𝐞 𝐂𝐡𝐚𝐧𝐧𝐞𝐥 ✜" ,url=f"https://t.me/Opleech_WD") ],
+                    InlineKeyboardButton("⚡ Bot Update" ,url=f"https://t.me/BotUpdates84") ],
                     [
-                    InlineKeyboardButton("✜ 𝗔𝘀𝗵𝘂𝘁𝗼𝘀𝗵𝗚𝗼𝘀𝘄𝗮𝗺𝗶𝟮𝟰 ✜" ,url="https://t.me/AshutoshGoswami24") ],
-                    [
-                    InlineKeyboardButton("🦋 𝐅𝐨𝐥𝐥𝐨𝐰 𝐌𝐞 🦋" ,url="https://t.me/Opleech_WD/13") ]                               
+                    InlineKeyboardButton("👨🏻‍💻 Owner" ,url="https://t.me/Its84Chaudhary") ]                         
             ]))
 
 
 @bot.on_message(filters.command("stop"))
 async def restart_handler(_, m):
-    await m.reply_text("♦ 𝐒𝐭𝐨𝐩𝐩𝐞𝐭 ♦", True)
+    await m.reply_text("Restarted ✅", True)
     os.execl(sys.executable, sys.executable, *sys.argv)
 
 
 
-@bot.on_message(filters.command(["upload"]))
+@bot.on_message(filters.command(["vivek"]))
 async def account_login(bot: Client, m: Message):
-    editable = await m.reply_text('𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐀 𝐓𝐱𝐭 𝐅𝐢𝐥𝐞 𝐒𝐞𝐧𝐝 𝐇𝐞𝐫𝐞 ⏍')
+    editable = await m.reply_text("Now Send Me Your **TXT** File & Follow Bot Instructions.")
     input: Message = await bot.listen(editable.chat.id)
     x = await input.download()
     await input.delete(True)
@@ -70,7 +68,7 @@ async def account_login(bot: Client, m: Message):
        os.remove(x)
             # print(len(links)
     except:
-           await m.reply_text("∝ 𝐈𝐧𝐯𝐚𝐥𝐢𝐝 𝐟𝐢𝐥𝐞 𝐢𝐧𝐩𝐮𝐭.")
+           await m.reply_text("Invalid File Input 🥲\n Start Your Process Again.")
            os.remove(x)
            return
     
