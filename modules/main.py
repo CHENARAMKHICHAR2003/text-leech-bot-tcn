@@ -82,7 +82,7 @@ async def account_login(bot: Client, m: Message):
     input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
-     if raw_text0 == 'd':
+    if raw_text0 == 'd':
         b_name = file_name
     elif raw_text0.startswith('/stop'):
       return await m.reply("Restarted ✅")
