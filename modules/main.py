@@ -73,18 +73,23 @@ async def account_login(bot: Client, m: Message):
            return
     
    
-    await editable.edit(f"∝ 𝐓𝐨𝐭𝐚𝐥 𝐋𝐢𝐧𝐤 𝐅𝐨𝐮𝐧𝐝 𝐀𝐫𝐞 🔗** **{len(links)}**\n\n𝐒𝐞𝐧𝐝 𝐅𝐫𝐨𝐦 𝐖𝐡𝐞𝐫𝐞 𝐘𝐨𝐮 𝐖𝐚𝐧𝐭 𝐓𝐨 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 𝐈𝐧𝐢𝐭𝐚𝐥 𝐢𝐬 **1**")
+    await editable.edit(f"Total Link Founds Are **{len(links)}**\n\nSend Number From Where You want to Download Initial is **1**")
     input0: Message = await bot.listen(editable.chat.id)
     raw_text = input0.text
     await input0.delete(True)
 
-    await editable.edit("∝ 𝐍𝐨𝐰 𝐏𝐥𝐞𝐚𝐬𝐞 𝐒𝐞𝐧𝐝 𝐌𝐞 𝐘𝐨𝐮𝐫 𝐁𝐚𝐭𝐜𝐡 𝐍𝐚𝐦𝐞")
+    await editable.edit("**Enter Batch Name or Send `d` To Grab Batch Name From TXT File**")
     input1: Message = await bot.listen(editable.chat.id)
     raw_text0 = input1.text
     await input1.delete(True)
-    
+     if raw_text0 == 'd':
+        b_name = file_name
+    elif raw_text0.startswith('/stop'):
+      return await m.reply("Restarted ✅")
+    else:
+        b_name = raw_text0
 
-    await editable.edit("∝ 𝐄𝐧𝐭𝐞𝐫 𝐄𝐞𝐬𝐨𝐥𝐮𝐭𝐢𝐨𝐧 🎬\n☞ 144,240,360,480,720,1080\nPlease Choose Quality")
+    await editable.edit("**Enter Resolution.**\n\n**Ex :-** `360`, `480`, `720` or `1080`")
     input2: Message = await bot.listen(editable.chat.id)
     raw_text2 = input2.text
     await input2.delete(True)
@@ -106,19 +111,18 @@ async def account_login(bot: Client, m: Message):
     except Exception:
             res = "UN"
     
-    
-
-    await editable.edit("✏️ Now Enter A Caption to add caption on your uploaded file")
+    await editable.edit("Enter Your Name.\n\n**Ex :-** `𝟖𝟒 𝐂𝐡𝐚𝐮𝐝𝐡𝐚𝐫𝐲`")
     input3: Message = await bot.listen(editable.chat.id)
     raw_text3 = input3.text
     await input3.delete(True)
-    highlighter  = f"️ ⁪⁬⁮⁮⁮"
-    if raw_text3 == 'Robin':
-        MR = highlighter 
+    if raw_text3 == 'de':
+        CR = credit
+    elif raw_text3.startswith('/stop'):
+      return await m.reply("Restarted ✅")
     else:
-        MR = raw_text3
+        CR = raw_text3
    
-    await editable.edit("🌄 Now send the Thumb url\nEg » https://graph.org/file/87dd86d1e81b88d041d75.jpg \n\n Or if don't want thumbnail send = no")
+   await editable.edit("Now Send Your **Thumb Url**\nOr Send **no**\n\n **Note :** Send **no** In Small latters Else Bot Failed to Upload Video")
     input6 = message = await bot.listen(editable.chat.id)
     raw_text6 = input6.text
     await input6.delete(True)
@@ -142,21 +146,41 @@ async def account_login(bot: Client, m: Message):
             V = links[i][1].replace("file/d/","uc?export=download&id=").replace("www.youtube-nocookie.com/embed", "youtu.be").replace("?modestbranding=1", "").replace("/view?usp=sharing","") # .replace("mpd","m3u8")
             url = "https://" + V
 
+            # if "appx" in V:
+            #     download_cmd = f'{cmd} -R 25 --fragment-retries 25 --proxy "{proxy_url}"'
+            # else:
+            #     download_cmd = f'{cmd} -R 25 --fragment-retries 25'
+		
             if "visionias" in url:
                 async with ClientSession() as session:
                     async with session.get(url, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'Accept-Language': 'en-US,en;q=0.9', 'Cache-Control': 'no-cache', 'Connection': 'keep-alive', 'Pragma': 'no-cache', 'Referer': 'http://www.visionias.in/', 'Sec-Fetch-Dest': 'iframe', 'Sec-Fetch-Mode': 'navigate', 'Sec-Fetch-Site': 'cross-site', 'Upgrade-Insecure-Requests': '1', 'User-Agent': 'Mozilla/5.0 (Linux; Android 12; RMX2121) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36', 'sec-ch-ua': '"Chromium";v="107", "Not=A?Brand";v="24"', 'sec-ch-ua-mobile': '?1', 'sec-ch-ua-platform': '"Android"',}) as resp:
                         text = await resp.text()
                         url = re.search(r"(https://.*?playlist.m3u8.*?)\"", text).group(1)
-
-            elif 'videos.classplusapp' in url:
-             url = requests.get(f'https://api.classplusapp.com/cams/uploader/video/jw-signed-url?url={url}', headers={'x-access-token': 'eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgzNjkyMTIsIm9yZ0lkIjoyNjA1LCJ0eXBlIjoxLCJtb2JpbGUiOiI5MTcwODI3NzQyODkiLCJuYW1lIjoiQWNlIiwiZW1haWwiOm51bGwsImlzRmlyc3RMb2dpbiI6dHJ1ZSwiZGVmYXVsdExhbmd1YWdlIjpudWxsLCJjb3VudHJ5Q29kZSI6IklOIiwiaXNJbnRlcm5hdGlvbmFsIjowLCJpYXQiOjE2NDMyODE4NzcsImV4cCI6MTY0Mzg4NjY3N30.hM33P2ai6ivdzxPPfm01LAd4JWv-vnrSxGXqvCirCSpUfhhofpeqyeHPxtstXwe0'}).json()['url']
-
+            
+            elif "tencdn.classplusapp" in url:
+            	headers = {'Host': 'api.classplusapp.com', 'x-access-token': 'eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgzNjkyMTIsIm9yZ0lkIjoyNjA1LCJ0eXBlIjoxLCJtb2JpbGUiOiI5MTcwODI3NzQyODkiLCJuYW1lIjoiQWNlIiwiZW1haWwiOm51bGwsImlzRmlyc3RMb2dpbiI6dHJ1ZSwiZGVmYXVsdExhbmd1YWdlIjpudWxsLCJjb3VudHJ5Q29kZSI6IklOIiwiaXNJbnRlcm5hdGlvbmFsIjowLCJpYXQiOjE2NDMyODE4NzcsImV4cCI6MTY0Mzg4NjY3N30.hM33P2ai6ivdzxPPfm01LAd4JWv-vnrSxGXqvCirCSpUfhhofpeqyeHPxtstXwe0', 'user-agent': 'Mobile-Android', 'app-version': '1.4.37.1', 'api-version': '18', 'device-id': '5d0d17ac8b3c9f51', 'device-details': '2848b866799971ca_2848b8667a33216c_SDK-30', 'accept-encoding': 'gzip'}
+            	params = (('url', f'{url}'),)
+            	response = requests.get('https://api.classplusapp.com/cams/uploader/video/jw-signed-url', headers=headers, params=params)
+            	url = response.json()['url']
+                
+            elif "videos.classplusapp" in url:
+            	headers = {'Host': 'api.classplusapp.com', 'x-access-token': 'eyJhbGciOiJIUzM4NCIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgzNjkyMTIsIm9yZ0lkIjoyNjA1LCJ0eXBlIjoxLCJtb2JpbGUiOiI5MTcwODI3NzQyODkiLCJuYW1lIjoiQWNlIiwiZW1haWwiOm51bGwsImlzRmlyc3RMb2dpbiI6dHJ1ZSwiZGVmYXVsdExhbmd1YWdlIjpudWxsLCJjb3VudHJ5Q29kZSI6IklOIiwiaXNJbnRlcm5hdGlvbmFsIjowLCJpYXQiOjE2NDMyODE4NzcsImV4cCI6MTY0Mzg4NjY3N30.hM33P2ai6ivdzxPPfm01LAd4JWv-vnrSxGXqvCirCSpUfhhofpeqyeHPxtstXwe0', 'user-agent': 'Mobile-Android', 'app-version': '1.4.37.1', 'api-version': '18', 'device-id': '5d0d17ac8b3c9f51', 'device-details': '2848b866799971ca_2848b8667a33216c_SDK-30', 'accept-encoding': 'gzip'}
+            	params = (('url', f'{url}'),)
+            	response = requests.get('https://api.classplusapp.com/cams/uploader/video/jw-signed-url', headers=headers, params=params)
+            	url = response.json()['url']
+                
             elif '/master.mpd' in url:
              id =  url.split("/")[-2]
+             #url =  "pw-signed-url-26260d62e264.herokuapp.com?v=https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
              url =  "https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
-
-            name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("+", "").replace("#", "").replace("|", "").replace("@", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").strip()
+		
+            name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("`", "").replace("+", "").replace("#", "").replace("|", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").replace('"', '').replace(',', '').replace("d1d34p8vz63oiq", "d26g5bnklkwsh4").replace("pw2.pc.cdn.bitgravity.com", "d26g5bnklkwsh4.cloudfront.net").replace("file/d/", "uc?export=download&id=").replace("https://vodtenserve.classx.co.in", "https://appx-recordings.classx.co.in").replace("d3nzo6itypaz07", "d26g5bnklkwsh4").replace("dn6x93wafba93", "d26g5bnklkwsh4").replace("d2tiz86clzieqa", "d26g5bnklkwsh4").replace("vod.teachx.in", "d3igdi2k1ohuql.cloudfront.net").replace("downloadappx.appx.co.in", "d33g7sdvsfd029.cloudfront.net").replace("d3igdi2k1ohuql.cloudfront.net", "migrationvideos.classx.co.in").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]}'
+
+             # elif '.m3u8' in url:
+            #  id =  url.replace("/hls/360/main.m3u8", "")
+            #  id2 = id.replace("https://d2bps9p1kiy4ka.cloudfront.net/", "")
+            #  url =  "https://psitoffers.store/testkey.php?vid=" + id2 + "&quality="+raw_text2   # link downlod command
 
             if "youtu" in url:
                 ytf = f"b[height<={raw_text2}][ext=mp4]/bv[height<={raw_text2}][ext=mp4]+ba[ext=m4a]/b[ext=mp4]"
@@ -168,10 +192,9 @@ async def account_login(bot: Client, m: Message):
             else:
                 cmd = f'yt-dlp -f "{ytf}" "{url}" -o "{name}.mp4"'
 
-            try:  
-                
-                cc = f'**[ 🎥 ] Vid_ID:** {str(count).zfill(3)}.** {𝗻𝗮𝗺𝗲𝟭}{MR}.mkv\n✉️ 𝐁𝐚𝐭𝐜𝐡 » **{raw_text0}**'
-                cc1 = f'**[ 📁 ] Pdf_ID:** {str(count).zfill(3)}. {𝗻𝗮𝗺𝗲𝟭}{MR}.pdf \n✉️ 𝐁𝐚𝐭𝐜𝐡 » **{raw_text0}**'
+             try:
+                cc = f'[ 🎬 ] **𝑽𝒊𝒅 𝑰𝑫 : **{str(count).zfill(3)}\n**𝑽𝒊𝒅𝒆𝒐 𝑵𝒂𝒎𝒆 :** {name1} ({res}).mkv\n**𝑩𝒂𝒕𝒄𝒉 𝑵𝒂𝒎𝒆 :** {b_name}\n\n**𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅 𝑩𝒚 ➤** {CR}'
+                cc1 = f'[ 📁 ] **𝑭𝒊𝒍𝒆 𝑰𝑫 : **{str(count).zfill(3)}\n**𝑭𝒊𝒍𝒆 𝑵𝒂𝒎𝒆 :** {name1}.pdf\n**𝑩𝒂𝒕𝒄𝒉 𝑵𝒂𝒎𝒆 : **{b_name}\n\n**𝑫𝒐𝒘𝒏𝒍𝒐𝒂𝒅 𝑩𝒚 ➤** {CR}'
                 if "drive" in url:
                     try:
                         ka = await helper.download(url, name)
@@ -197,7 +220,7 @@ async def account_login(bot: Client, m: Message):
                         time.sleep(e.x)
                         continue
                 else:
-                    Show = f"❊⟱𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 ⟱❊ »\n\n📝 𝐍𝐚𝐦𝐞 » `{name}\n⌨ 𝐐𝐮𝐥𝐢𝐭𝐲 » {raw_text2}`\n\n**🔗 𝐔𝐑𝐋 »** `{url}`"
+                    Show = f"𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠....\n\n📝 𝐍𝐚𝐦𝐞 » `{name}\n⌨ 𝐐𝐮𝐚𝐥𝐢𝐭𝐲 » {raw_text2}`\n\n**🔗 𝐔𝐑𝐋 »** `{url}`\n\n**Bot By ➤**「 @Its84Chaudhary 」"
                     prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
@@ -207,18 +230,24 @@ async def account_login(bot: Client, m: Message):
                     time.sleep(1)
 
             except Exception as e:
-                await m.reply_text(
-                    f"⌘ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝𝐢𝐧𝐠 𝐈𝐧𝐭𝐞𝐫𝐮𝐩𝐭𝐞𝐝\n{str(e)}\n⌘ 𝐍𝐚𝐦𝐞 » {name}\n⌘ 𝐋𝐢𝐧𝐤 » `{url}`"
-                )
+                except Exception as e:
+                await m.reply_text(f"**#Failed to Download❌ **\n**Name ➤** `{name}`\n**Link ➤** `{url}`\n\n ** Failed Reason ➤** `{e}`")
                 continue
 
     except Exception as e:
         await m.reply_text(e)
-    await m.reply_text("𝐒𝐮𝐜𝐜𝐞𝐬𝐬𝐟𝐮𝐥𝐥𝐲 𝐃𝐨𝐧𝐞")
+    time.sleep(2)
+    await m.reply_text("Done ✅")
+    processing_request = False  # Reset the processing flag
 
 print("""
-█░█░█ █▀█ █▀█ █▀▄ █▀▀ █▀█ ▄▀█ █▀▀ ▀█▀     ▄▀█ █▀ █░█ █░█ ▀█▀ █▀█ █▀ █░█   ░ █▀▀
-▀▄▀▄▀ █▄█ █▄█ █▄▀ █▄▄ █▀▄ █▀█ █▀░ ░█░     █▀█ ▄█ █▀█ █▄█ ░█░ █▄█ ▄█ █▀█   ▄ █▄█""")
+
+██╗░░░██╗██╗██╗░░░██╗███████╗██╗░░██╗  ████████╗░█████╗░███╗░░░███╗░█████╗░██████╗░
+██║░░░██║██║██║░░░██║██╔════╝██║░██╔╝  ╚══██╔══╝██╔══██╗████╗░████║██╔══██╗██╔══██╗
+╚██╗░██╔╝██║╚██╗░██╔╝█████╗░░█████═╝░  ░░░██║░░░██║░░██║██╔████╔██║███████║██████╔╝
+░╚████╔╝░██║░╚████╔╝░██╔══╝░░██╔═██╗░  ░░░██║░░░██║░░██║██║╚██╔╝██║██╔══██║██╔══██╗
+░░╚██╔╝░░██║░░╚██╔╝░░███████╗██║░╚██╗  ░░░██║░░░╚█████╔╝██║░╚═╝░██║██║░░██║██║░░██║
+░░░╚═╝░░░╚═╝░░░╚═╝░░░╚══════╝╚═╝░░╚═╝  ░░░╚═╝░░░░╚════╝░╚═╝░░░░░╚═╝╚═╝░░╚═╝╚═╝░░╚═╝""")
 print("""✅Bot Working✅""")
 
 bot.run()
