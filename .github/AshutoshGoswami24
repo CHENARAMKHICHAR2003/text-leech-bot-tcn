@@ -102,7 +102,7 @@
         "\n",
         "#@markdown ### <font color=ORANGE>Environment Variables\n",
         "\n",
-        "API_ID = \"\"  #@param {type:\"string\"}\n",
+        "API_ID = \"10083266\"  #@param {type:\"string\"}\n",
         "os.environ['API_ID'] = API_ID\n",
         "\n",
         "API_HASH = \"\"  #@param {type:\"string\"}\n",
