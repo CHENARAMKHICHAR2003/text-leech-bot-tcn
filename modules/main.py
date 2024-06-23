@@ -171,9 +171,9 @@ async def account_login(bot: Client, m: Message):
                 
             elif '/master.mpd' in url:
              id =  url.split("/")[-2]
-	    #url =  "pw.jarviss.workers.dev?v=https://d26g5bnklkwsh4.cloudfront.net/" + id + "&quality=+raw_text2"
+	     url =  "https://pw.jarviss.workers.dev?v=https://d1d34p8vz63oiq.cloudfront.net/" + id + "/master.mpd&quality=+raw_text2"
             #url =  "pw-signed-url-26260d62e264.herokuapp.com?v=https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
-             url =  "https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
+            #url =  "https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
 		
             name1 = links[i][0].replace("\t", "").replace(":", "").replace("/", "").replace("`", "").replace("+", "").replace("#", "").replace("|", "").replace("*", "").replace(".", "").replace("https", "").replace("http", "").replace('"', '').replace(',', '').replace("d1d34p8vz63oiq", "d26g5bnklkwsh4").replace("pw2.pc.cdn.bitgravity.com", "d26g5bnklkwsh4.cloudfront.net").replace("file/d/", "uc?export=download&id=").replace("https://vodtenserve.classx.co.in", "https://appx-recordings.classx.co.in").replace("d3nzo6itypaz07", "d26g5bnklkwsh4").replace("dn6x93wafba93", "d26g5bnklkwsh4").replace("d2tiz86clzieqa", "d26g5bnklkwsh4").replace("vod.teachx.in", "d3igdi2k1ohuql.cloudfront.net").replace("downloadappx.appx.co.in", "d33g7sdvsfd029.cloudfront.net").replace("d3igdi2k1ohuql.cloudfront.net", "migrationvideos.classx.co.in").strip()
             name = f'{str(count).zfill(3)}) {name1[:60]}'
