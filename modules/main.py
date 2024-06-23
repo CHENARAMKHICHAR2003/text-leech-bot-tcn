@@ -163,7 +163,7 @@ async def account_login(bot: Client, m: Message):
             response = requests.get('https://api.classplusapp.com/cams/uploader/video/jw-signed-url', headers=headers, params=params)
             url = response.json()['url']
 
-	elif '/master.mpd' in url:
+	elif 'master.mpd' in url:
           id =  url.split("/")[-2]
 	  url =  "https://pw.jarviss.workers.dev?v={id}&quality={raw_text2}"
 #url =  "pw-signed-url-26260d62e264.herokuapp.com?v=https://d26g5bnklkwsh4.cloudfront.net/" + id + "/master.m3u8"
