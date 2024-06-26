@@ -222,7 +222,7 @@ async def account_login(bot: Client, m: Message):
                         continue
                 else:
                     Show = f"𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱𝗶𝗻𝗴 ....\n\n𝐓𝐢𝐭𝐥𝐞 : `{name}`\n𝐐𝐮𝐚𝐥𝐢𝐭𝐲 : `{raw_text2}`\n𝐋𝐢𝐧𝐤 : `{url}`\n\n𝐁𝐨𝐭 𝐏𝐫𝐨𝐯𝐢𝐝𝐞 𝐁𝐲 ➤【 @Its84Chaudhary 】"
-                    #prog = await m.reply_text(Show)
+                    prog = await m.reply_text(Show)
                     res_file = await helper.download_video(url, cmd, name)
                     filename = res_file
                     await prog.delete(True)
