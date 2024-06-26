@@ -181,8 +181,8 @@ async def download_video(url,cmd, name):
 
 
 async def send_doc(bot: Client, m: Message,cc,ka,cc1,count,name):
-    #reply = await m.reply_text(f"𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴....\n\n𝐏𝐝𝐟 𝐍𝐚𝐦𝐞 : `{name}`")
-    #time.sleep(1)
+    reply = await m.reply_text(f"𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴....\n\n𝐏𝐝𝐟 𝐍𝐚𝐦𝐞 : `{name}`")
+    time.sleep(1)
     start_time = time.time()
     await m.reply_document(ka,caption=cc1)
     count+=1
@@ -194,8 +194,8 @@ async def send_doc(bot: Client, m: Message,cc,ka,cc1,count,name):
 
 async def send_vid(bot: Client, m: Message,cc,filename,thumb,name):
     subprocess.run(f'ffmpeg -i "{filename}" -ss 00:01:00 -vframes 1 "{filename}.jpg"', shell=True)
-    #await prog.delete (True)
-    #reply = await m.reply_text(f"**𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴....**\n\n𝐕𝐢𝐝𝐞𝐨 𝐍𝐚𝐦𝐞 : `{name}`")
+    await prog.delete (True)
+    reply = await m.reply_text(f"**𝗨𝗽𝗹𝗼𝗮𝗱𝗶𝗻𝗴....**\n\n𝐕𝐢𝐝𝐞𝐨 𝐍𝐚𝐦𝐞 : `{name}`")
     try:
         if thumb == "no":
             thumbnail = f"{filename}.jpg"
@@ -208,13 +208,11 @@ async def send_vid(bot: Client, m: Message,cc,filename,thumb,name):
 
     start_time = time.time()
 
-    try:
-        copy = await bot.send_video(chat_id=m.chat.id,video=filename,caption=cc, supports_streaming=True,height=720,width=1280,thumb=thumbnail,duration=dur) #, progress=progress_bar,progress_args=(reply,start_time))
-    except TimeoutError:
-        await asyncio.sleep(5) 
-        copy = await bot.send_video(chat_id=m.chat.id,video=filename,caption=cc, supports_streaming=True,height=720,width=1280,thumb=thumbnail,duration=dur) #, progress=progress_bar,progress_args=(reply,start_time))       
+   try:
+        await m.reply_video(filename,caption=cc, supports_streaming=True,height=720,width=1280,thumb=thumbnail,duration=dur, progress=progress_bar,progress_args=(reply,start_time))
     except Exception:
-        copy = await bot.send_video(chat_id=m.chat.id,video=filename,caption=cc, supports_streaming=True,height=720,width=1280,thumb=thumbnail,duration=dur) #progress=progress_bar,progress_args=(reply,start_time))
+        await m.reply_document(filename,caption=cc, progress=progress_bar,progress_args=(reply,start_time))
+    os.remove(filename)
 
     os.remove(f"{filename}.jpg")
     await reply.delete (True)
