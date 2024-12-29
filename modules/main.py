@@ -36,9 +36,9 @@ async def account_login(bot: Client, m: Message):
        f"  Hello 👋 Sir ! How are You ?\n\n ☞ I'm **Txt File** Downloader Bot.\n\n ☞ I can Download **Videos & Pdf** From Your **TXT** File.\n\n☞ Use /txt Command to Start the Process.\n\n ☞Use /stop Command to **Restart** bot.\n\n ☞ 𝐂𝐫𝐞𝐚𝐭𝐞𝐝 𝐁𝐲 **:** @Its84Chaudhary\n", reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("⚡ Bot Update" ,url=f"https://t.me/BotUpdates84") ],
+                    InlineKeyboardButton("⚡ Bot Update" ,url=f"https://t.me/TARGETALLCOURSE") ],
                     [
-                    InlineKeyboardButton("👨🏻‍💻 Owner" ,url="https://t.me/Its84Chaudhary") ]                         
+                    InlineKeyboardButton("👨🏻‍💻 Owner" ,url="https://t.me/FREE_COURSE2_BOT") ]                         
             ]))
 
 
